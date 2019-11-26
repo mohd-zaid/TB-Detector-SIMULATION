@@ -1,0 +1,174 @@
+<!doctype html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title> {{ title }} </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="icon" href="{{url_for('static', filename='logo.png')}}" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+    
+    <section class="hero is-light is-large">
+        <div class="hero-body" style="padding-top:9rem;">
+            <div class="container" style="max-width:94%">
+                <div class="columns is-centered is-3">
+                    <div class="columns is-half has-background-dark has-text-white">
+                        <div class="column">
+                            <div class="columns">
+                                <div class="column">
+                                    <h1 class="title is-1 has-text-white">
+                                        Classifying TB
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <h2 class="subtitle has-text-white">
+                                        An application that uses CNN, to predict TB.
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <p>We used a pretrained CNN(VGG16) for predictions and applied transfer learning to re-train some of it's layers on Lung X-ray(s).Apart from the VGG16, we have also added 3 dense layers for the CNN to properly learn the
+                                        features. A dropout layer is also added to prevent the Neural Network from over-fitting.</p>
+                                </div>
+                            </div>
+
+                            <div class="columns ">
+                                <div class="column">
+                                    <h3 class="subtitle has-text-white">Specifications</h3>
+                                    <hr/>
+                                    <ul>
+                                        <li>Model Name: VGG16</li>
+                                        <li>Optimizer: Adam</li>
+                                        <li>Number of epochs trained on: 50</li>
+                                        <li>Learning rate: 0.0001</li>
+                                        <li>Validation loss: 0.54</li>
+                                        <li>Validation accuracy: 0.8 or 80%</li>
+                                        <li>
+                                            <a href="{{url_for('presentation')}}" target="_blank">More Information</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column is-half has-background-warning">
+                            <div class="columns has-text-centered">
+                                <div class="column">
+                                    <h1 class="title is-3 has-text-white">
+                                        {{data.success}}
+                                    </h1>
+                                </div>
+                            </div>
+                            <div class="columns is-centered ">
+                                <div class="column is-half has-text-centered">
+                                    <form method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            {{ form.username.label(class="form-control-label") }}
+                        
+                                            {% if form.username.errors %}
+                                                {{ form.username(class="form-control form-control-lg is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.username.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.username(class="form-control form-control-lg") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.email.label(class="form-control-label") }}
+                                            {% if form.email.errors %}
+                                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.email.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.email(class="form-control form-control-lg") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.gender.label(class="form-control-label") }}
+                                            {% if form.gender.errors %}
+                                                {{ form.gender(class="form-control form-control-lg is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.gender.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.gender(class="form-control form-control-lg") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="form-group">
+                                            {{ form.Daily_activity.label(class="form-control-label") }}
+                                            {% if form.Daily_activity.errors %}
+                                                {{ form.Daily_activity(class="form-control form-control-lg is-invalid") }}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.Daily_activity.errors %}
+                                                        <span>{{ error }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                {{ form.Daily_activity(class="form-control form-control-lg") }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="columns is-normal">
+                                            <input class="button is-centered" type="file" name="image" accept="image/*"><br/>
+                                        </div>
+                                        <div class="columns is-centered">
+                                            <input class="button is-normal" type="submit">
+                                        </div>
+                                    </form><br>
+
+                                </div>
+                            </div>
+                            
+                            <div class="columns is-centered">
+                                <div class="column has-text-centered is-half">
+                                    <figure class="image" style:"">
+                                        <img src="static/img/{{ name }}" alt="{{ name }}">
+                                    </figure>
+                                </div>
+                            </div>
+                            
+                                   
+                            <div class="columns is-centered">
+                                <div class="column has-text-centered">
+                                    <h2 class="subtitle">
+                                        {% if data.prediction == "Positive" %}
+                                        <h2 class="title is-1 has-text-danger">{{data.prediction}}
+                                        </h2>
+                                        {% else %}
+                                        <h2 class="title is-1 has-text-success">{{data.prediction}}
+                                        </h2>
+                                        {% endif %}
+
+                                   
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
