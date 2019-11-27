@@ -15,26 +15,59 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+  .tr{
+    background-color:grey
+  }
+.te{
+  font-size: 20px;
+}
+</style>
+
 </head>
-<body>
+<body class="tr">
     {% block content %}
     {%  for user in user        %}
-    <article class="media content-section bg-dark text-white">
+    <form>
+        <div class="form-group row form-inline ">
+            <label for="staticEmail" class="col-sm-1 col-form-label bg-primary te ">User-id</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext bg-light te" id="staticEmail" value={{user.id}}>
+            </div>        
+        </div>
+      <div class="form-group row form-inline">
+        <label for="staticEmail" class="col-sm-1 col-form-label bg-secondary text-light te">Username</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext bg-light te" id="staticEmail" value={{user.username}}>
+        </div>        
+      </div>
+      <div class="form-group row form-inline">
+        <label for="staticEmail" class="col-sm-1 col-form-label bg-light te">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext bg-light te" id="staticEmail" value={{user.email}}>
+        </div>        
+      </div>
+      <div class="form-group row form-inline">
+        <label for="staticEmail" class="col-sm-1 col-form-label bg-light te">Gender</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext bg-light te" id="staticEmail" value={{user.gender}}>
+        </div>        
+      </div>
+      <div class="form-group row form-inline">
+        <label for="staticEmail" class="col-sm-1 col-form-label bg-info te">Report_result</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext bg-light te" id="staticEmail" value={{user.Report_result}}>
+        </div>        
+      </div>
+      <div class="form-group row form-inline">
+        <label for="staticEmail" class="col-sm-1 col-form-label bg-light te">Daily_activity</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext bg-light te" id="staticEmail" value={{user.Daily_activity}}>
+        </div>        
+      </div>
+      <hr class="bg-dark">
     
-            <div class="media-body">
-              <div class="article-metadata">
-                <p class="mr-2" >{{ user.username }}</p>
-                <small class="text-muted">{{ user.useremail }}</small>
-              </div>
-              <h2 class="article-title bg-dark" >{{ user.gender }}</></h2>
-              <h2>{{ user.Daily_activity }}</h2>
-              
-              <h2>{{ user.Report_result }}</h2>
-              
-            </div>
-            
-    </article>
-    <br>
+    </form>
     {% endfor     %}
 
     {% endblock content   %}
