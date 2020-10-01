@@ -8,4 +8,4 @@ This is a image classifier, It uses the pretrained Neural Network .More details 
 * `python app.py`
 * Open up browser and go to `localhost:5000`.
 * Upload a picture and click submit.
-* submit name gender hobby and save it in database 
+* submit name gender hobby and save it in database.
